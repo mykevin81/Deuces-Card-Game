@@ -1,0 +1,57 @@
+<div style="padding-top: 50px; width:99%; height: 99%;">
+<p id="notice"><%= notice %></p>
+  <center><h1><%= @deuce[:name] %></h1></center>
+  <hr/>
+  <center><button class="btn btn-primary btn-lg">Start Game</button></center>
+<div class="content-box">
+  <center>
+  <div class="players">
+    <div class="player-center-top" style="margin: 10px; height: 150px; width 150px;">
+    <% user = User.find(@deuce[:player1]) %>
+       <center><h2><%= user[:name] %></h2></center>
+       <%= image_tag("special.jpg", class: "img-circle img-responsive img-center", size: "100x100") %>
+    </div>
+
+    <div class="player-left" style="margin: 10px;">
+    <% if ! @deuce[:player2].nil? %>
+      <% user = User.find(@deuce[:player2]) %>
+      <center><h2><%= user[:name] %></h2></center>
+      <%= image_tag("creep.png", class: "img-circle img-responsive img-center", size: "100x100") %>
+    <% end %>
+    </div>
+
+    <div class="player-right" style="margin: 10px;">
+    <% if ! @deuce[:player3].nil? %>
+      <% user = User.find(@deuce[:player3]) %>
+      <center><h2><%= user[:name] %></h2></center>
+      <%= image_tag("joy.jpeg", class: "img-circle img-responsive img-center", size: "100x100") %>
+    <% end %>
+    </div>
+    <div class="player-center-bottom col-md-2" style="margin: 10px;">
+    <% if ! @deuce[:player4].nil? %>
+      <% user = User.find(@deuce[:player4]) %>
+      <center><h2><%= user[:name] %></h2></center>
+      <%= image_tag("troll.png", class: "img-circle img-responsive img-center", size: "100x100") %>
+    <% end %>
+  </div>
+  </div>
+</center>
+</div>
+</div>
+
+
+<div id="chatbox">
+  <div class="chatboxTitle">
+    Game Chat
+  </div>
+  <div class="chatContainer">
+  <div id="messagesArea"></div>
+  <hr/>
+  <center>
+  <div id="messageInputBoxWrapper">
+    <input type="text" class="form-control" id="messageInputBox" placeholder="Message ..."/>
+  </div>
+  <button type="button" class="btn btn-success btn-sm" onclick="sendMessage(<%= current_user[:id] %>)">Send</button>
+</center>
+</div>
+</div>

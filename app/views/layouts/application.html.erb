@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deuces</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag  '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag  '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js' %>
+  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
+  <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+  <%= pusher_include_tag '2.2' %>
+  <%= csrf_meta_tags %>
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <script src="//js.pusher.com/2.2/pusher.min.js"></script>
+  <script type="text/javascript">
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+    
+    var pusher = new Pusher("a6c97e689cf9fd217899");
+  </script>
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+  <link href="css/business-frontpage.css" rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<%= render 'layouts/nav' %>
+
+<div class="container">
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert%></p>
+  <% end %>
+  <%= yield %>
+</div>
+<audio id="chatAudio"><source src="/sound.notification.mp3" type="audio/mpeg"><audio>
+</body>
+
+</html>

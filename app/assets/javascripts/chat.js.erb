@@ -1,0 +1,38 @@
+/**
+ * Chat logic
+ *
+ * Most of the js functionality is inspired from anatgarg.com
+ * jQuery tag Module from the tutorial
+ * http://anantgarg.com/2009/05/13/gmail-facebook-style-jquery-chat/
+ *
+ */
+
+
+;(function ($) {
+
+  <% unless Rails.env.production? %>
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+  <% end %>
+
+  var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
+  var channel = pusher.subscribe('conversation');
+
+  pusher.connection.bind('connected', function () {
+    var socket_id = pusher.connection.socket_id;
+
+    $('#socket_id').val(socket_id);
+  });
+
+  channel.bind('new_message', function (data) {
+    // Code smell - Duplicated view
+    // It's exactly app/views/chat_messages/_chat_message.html
+    $('.conversation_messages').prepend('<li>' + data.name + ' says ' + data.message + '</li>');
+  });
+}(jQuery));
+
+$(document).ready(ready);
+$(document).on("page:load", ready);

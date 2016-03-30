@@ -1,0 +1,8 @@
+{
+  "name": "Heroku Rails web game app",
+  "description": "This ia a webgame called deuces that is deployed to Heroku",
+  "image": "heroku/ruby",
+  "repository": "https://github.com/heroku/teamawebgame",
+  "keywords": ["ruby", "rails" ],
+  "addons": [ "heroku-postgresql" ]
+}
